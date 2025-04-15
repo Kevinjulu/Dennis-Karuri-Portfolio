@@ -1,0 +1,7 @@
+[build]
+command = "npm run pages:build"
+cwd = "."
+watch_dir = "src"
+
+[build.upload]
+format = "service-worker"
