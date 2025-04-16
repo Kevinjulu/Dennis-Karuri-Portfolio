@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Overview } from "@/components/admin/overview-chart"
+import { Overview as OverviewChart } from "@/components/admin/overview-chart"
 import { RecentSales } from "@/components/admin/recent-sales"
 import { Button } from "@/components/ui/button"
 import { apiClient } from "@/lib/api-client"
@@ -268,7 +268,7 @@ export function Overview() {
           <CardTitle>Portfolio Performance</CardTitle>
         </CardHeader>
         <CardContent className="pl-2">
-          <Overview />
+          <OverviewChart />
         </CardContent>
       </Card>
       <Card className="col-span-3">
