@@ -92,7 +92,7 @@ export function getConnectionType(): string {
     return 'unknown';
   }
   
-  // @ts-ignore - Navigator connection API
+  // @ts-expect-error - Navigator connection API
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   return connection?.effectiveType || 'unknown';
 }

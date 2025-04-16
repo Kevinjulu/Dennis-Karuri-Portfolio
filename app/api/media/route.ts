@@ -10,11 +10,8 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const type = searchParams.get('type');
     
-    let query: any = {};
+    const query: any = type ? { type } : {};
     
-    if (type) {
-      query.type = type;
-    }
     
     const mediaItems = await Media.find(query)
       .sort({ createdAt: -1 })

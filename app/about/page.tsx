@@ -314,9 +314,9 @@ export default function AboutPage() {
                   <div className="absolute -right-10 -top-10 w-40 h-40 bg-gradient-to-br from-red-200 to-rose-100 rounded-full blur-3xl opacity-20"
                     style={{
                       background: `linear-gradient(to bottom right, var(--tw-gradient-stops))`,
-                      '--tw-gradient-from': value.color.split(' ')[0].replace('from-', ''),
-                      '--tw-gradient-to': value.color.split(' ')[1].replace('to-', '')
-                    }}
+                      '--tw-gradient-from': value.color.split(' ')[0].replace('from-', '') as string,
+                      '--tw-gradient-to': value.color.split(' ')[1].replace('to-', '') as string
+                    } as React.CSSProperties}
                   ></div>
                   
                   <motion.div 

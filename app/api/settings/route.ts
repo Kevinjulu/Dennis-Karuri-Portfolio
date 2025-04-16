@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const category = searchParams.get('category');
     
-    let query: any = {};
+    const query: any = {};
     
     if (category) {
       query.category = category;

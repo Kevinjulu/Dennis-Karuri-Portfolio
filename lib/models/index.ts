@@ -11,6 +11,8 @@ interface CachedConnection {
 
 // Define the mongoose global type
 declare global {
+  // Using var is required for global augmentation
+  // eslint-disable-next-line no-var
   var mongoose: CachedConnection | undefined;
 }
 
@@ -19,10 +21,11 @@ const clientOptions = {
   bufferCommands: false
 };
 
-let cached: CachedConnection = global.mongoose || { conn: null, promise: null };
+// Use type assertion to access the global mongoose property
+const cached: CachedConnection = (global as any).mongoose || { conn: null, promise: null };
 
-if (!global.mongoose) {
-  global.mongoose = cached;
+if (!(global as any).mongoose) {
+  (global as any).mongoose = cached;
 }
 
 async function dbConnect() {

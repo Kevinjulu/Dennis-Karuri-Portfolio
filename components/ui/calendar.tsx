@@ -54,8 +54,11 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        // Use the correct component names from react-day-picker v9
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        PreviousMonthButton: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        NextMonthButton: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
       }}
       {...props}
     />

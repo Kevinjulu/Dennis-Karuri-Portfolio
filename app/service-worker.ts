@@ -99,8 +99,9 @@ self.addEventListener('fetch', (event: any) => {
         return response || fetch(request)
           .then(networkResponse => {
             // Don't cache API responses or large files
+            const contentLength = networkResponse.headers.get('content-length');
             if (url.pathname.startsWith('/api/') || 
-                networkResponse.headers.get('content-length') > 1024 * 1024) {
+                (contentLength && parseInt(contentLength, 10) > 1024 * 1024)) {
               return networkResponse;
             }
             

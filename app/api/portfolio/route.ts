@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
     const category = searchParams.get('category');
     const featured = searchParams.get('featured') === 'true';
     
-    let query: any = {};
+    const query: any = {};
     
     if (category) {
       query.category = category;

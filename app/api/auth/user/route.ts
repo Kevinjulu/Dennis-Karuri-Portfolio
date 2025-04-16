@@ -3,6 +3,14 @@ import { getAuthUser } from '@/lib/auth';
 import dbConnect from '@/lib/models';
 import User from '@/lib/models/user';
 
+// Define interface for user document
+interface UserDocument {
+  _id: any;
+  email: string;
+  name: string;
+  role: string;
+}
+
 export async function GET(req: NextRequest) {
   try {
     await dbConnect();
@@ -21,19 +29,25 @@ export async function GET(req: NextRequest) {
     const user = await User.findById(authUser.userId)
       .select('-password')
       .lean();
-    
-    if (!user) {
+      
+    // Make sure we have a single document, not an array
+    if (!user || Array.isArray(user)) {
       return NextResponse.json(
         { error: 'User not found' },
         { status: 404 }
       );
     }
     
+
+    
+    // Use type assertion with our interface
+    const userDoc = user as unknown as UserDocument;
+    
     return NextResponse.json({
-      id: user._id,
-      email: user.email,
-      name: user.name,
-      role: user.role
+      id: userDoc._id ? userDoc._id.toString() : '',
+      email: userDoc.email,
+      name: userDoc.name,
+      role: userDoc.role
     });
   } catch (error) {
     console.error('Error fetching user:', error);
