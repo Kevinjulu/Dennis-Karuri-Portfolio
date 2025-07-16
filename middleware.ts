@@ -2,6 +2,9 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { getAuthUser } from "@/lib/auth"
 
+// Specify Node.js runtime
+export const runtime = 'nodejs'
+
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
 
