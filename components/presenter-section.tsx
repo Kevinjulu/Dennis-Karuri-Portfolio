@@ -14,7 +14,7 @@ export function PresenterSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          Modeling
+          Beauty Education
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -28,8 +28,8 @@ export function PresenterSection() {
             <div className="absolute -inset-4 bg-gradient-to-tr from-red-200 to-rose-100 rounded-2xl blur-lg opacity-30"></div>
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/Diana Luvanda  (7).jpg"
-                alt="Diana Modeling"
+                src="/images/Other images/Karuri (40).jpg"
+                alt="Dennis Teaching Makeup"
                 fill
                 className="object-cover"
                 priority
@@ -51,12 +51,11 @@ export function PresenterSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              As a model, I've had the privilege of working with renowned brands and photographers, bringing creative
-              visions to life through commercial campaigns and fashion shoots.
+              As a makeup artist and beauty educator, I've had the privilege of sharing my knowledge and techniques with aspiring artists through masterclasses, workshops, and online tutorials.
             </p>
 
             <div className="grid grid-cols-2 gap-3 md:gap-4">
-              {["Commercial Ads", "Brand Campaigns", "Fashion Shoots", "Print Media"].map((item, index) => (
+              {["Masterclasses", "Online Tutorials", "One-on-One Training", "Beauty Workshops"].map((item, index) => (
                 <div key={index} className="glass-card p-3 md:p-4 rounded-xl">
                   <p className="font-medium text-sm md:text-base">{item}</p>
                 </div>
@@ -64,19 +63,19 @@ export function PresenterSection() {
             </div>
 
             <div className="glass-card p-4 md:p-6 rounded-xl">
-              <h3 className="font-bold text-lg md:text-xl mb-2">Brand Collaborations</h3>
+              <h3 className="font-bold text-lg md:text-xl mb-2">Education Highlights</h3>
               <ul className="space-y-2">
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-primary"></span>
-                  <span>Co-operative Bank</span>
+                  <span>Sold-out Masterclasses in Nairobi</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-primary"></span>
-                  <span>Naivas</span>
+                  <span>Beauty Brand Ambassador Training</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-primary"></span>
-                  <span>Tusker</span>
+                  <span>Professional Makeup Certification</span>
                 </li>
               </ul>
             </div>

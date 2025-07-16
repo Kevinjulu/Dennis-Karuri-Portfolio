@@ -2,137 +2,103 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { OptimizedImage } from "@/components/optimized-image"
+import { preloadImages } from "@/lib/utils"
 
 const images = [
   {
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562494874.jpg-QqdOUvy4fxWDFqNdE8q5e4NUeL7Sz3.jpeg",
-    alt: "Diana in Red",
-    caption: "Style & Grace",
+    url: "/images/Other images/Karuri (50).jpg",
+    alt: "Dennis Karuri Makeup Work",
+    caption: "Glamour Transformation",
+    category: "Makeup",
+  },
+  {
+    url: "/images/Other images/Karuri (51).jpg",
+    alt: "Dennis Karuri Beauty Look",
+    caption: "Bold Beauty",
+    category: "Creative",
+  },
+  {
+    url: "/images/Other images/Karuri (52).jpg",
+    alt: "Dennis Karuri Editorial",
+    caption: "Editorial Excellence",
     category: "Fashion",
   },
   {
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562595365.jpg-fj7KH4HbKgMTVKYJfwUk5IbfYC8bF6.jpeg",
-    alt: "Diana in Pink",
-    caption: "Elegance",
-    category: "Glamour",
+    url: "/images/Other images/Karuri (53).jpg",
+    alt: "Dennis Karuri Bridal",
+    caption: "Bridal Perfection",
+    category: "Wedding",
   },
   {
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562964522.jpg-RIuqkkI2u9dMi98VnQ3nNv19XYzttR.jpeg",
-    alt: "Diana Casual",
-    caption: "Natural Beauty",
-    category: "Lifestyle",
-  },
-  {
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562381812.jpg-HMHb2DddAP5Mti0hDcgoBbBGT62MzO.jpeg",
-    alt: "Diana Evening",
-    caption: "Evening Glamour",
-    category: "Fashion",
-  },
-  {
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562751954.jpg-EDdNbEs5omH4VKkB7TUrLwteNj0CM9.jpeg",
-    alt: "Diana Studio",
-    caption: "Studio Elegance",
-    category: "Fashion",
+    url: "/images/Other images/Karuri (54).jpg",
+    alt: "Dennis Karuri Artistic",
+    caption: "Artistic Vision",
+    category: "Creative",
   },
 ]
 
 export function GallerySlider() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
-  const [isHovered, setIsHovered] = useState(false)
+  const [imageErrors, setImageErrors] = useState<boolean[]>(Array(images.length).fill(false))
 
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
-  }
-
-  const swipeConfidenceThreshold = 10000
-  const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity
-  }
+  // Preload images after component mounts
+  useEffect(() => {
+    preloadImages(images.map(img => img.url))
+      .catch(err => console.error('Error preloading gallery images:', err))
+  }, [])
 
   const paginate = useCallback((newDirection: number) => {
     setDirection(newDirection)
-    setCurrentIndex((prevIndex) => (prevIndex + newDirection + images.length) % images.length)
-  }, [])
-
-  useEffect(() => {
-    if (!isHovered) {
-      const timer = setTimeout(() => {
-        paginate(1)
-      }, 5000)
-      return () => clearTimeout(timer)
-    }
-  }, [isHovered, paginate])
+    setCurrentIndex((prevIndex) => {
+      let nextIndex = (prevIndex + newDirection + images.length) % images.length
+      let attempts = 0
+      
+      // Skip images that failed to load
+      while (imageErrors[nextIndex] && attempts < images.length) {
+        nextIndex = (nextIndex + newDirection + images.length) % images.length
+        attempts++
+      }
+      
+      return nextIndex
+    })
+  }, [imageErrors])
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-white to-pink-50 py-20">
+    <section className="py-16">
       <div className="container mx-auto px-4">
-        <motion.h2
-          className="text-4xl md:text-5xl font-playfair text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Portfolio Highlights
-        </motion.h2>
-
-        <div
-          className="relative h-[80vh] max-h-[800px] overflow-hidden rounded-2xl"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+        <div className="relative aspect-video rounded-2xl overflow-hidden">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={currentIndex}
               custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 },
-              }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={1}
-              onDragEnd={(e, { offset, velocity }) => {
-                const swipe = swipePower(offset.x, velocity.x)
-                if (swipe < -swipeConfidenceThreshold) {
-                  paginate(1)
-                } else if (swipe > swipeConfidenceThreshold) {
-                  paginate(-1)
-                }
-              }}
+              initial={{ opacity: 0, x: direction > 0 ? 1000 : -1000 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction > 0 ? -1000 : 1000 }}
+              transition={{ duration: 0.5 }}
               className="absolute inset-0"
             >
               <div className="relative w-full h-full">
-                <Image
-                  src={images[currentIndex].url || "/placeholder.svg"}
+                <OptimizedImage
+                  src={imageErrors[currentIndex] ? "/placeholder.svg" : images[currentIndex].url}
                   alt={images[currentIndex].alt}
-                  fill
                   className="object-cover"
-                  priority
-                  quality={80}
+                  priority={currentIndex === 0}
                   sizes="(max-width: 768px) 100vw, 1200px"
-                  placeholder="blur"
-                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiB2ZXJzaW9uPSIxLjEiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZmZlNGU2Ii8+PC9zdmc+"
+                  quality={85}
+                  aspectRatio="aspect-video"
+                  preload={true}
+                  onError={() => {
+                    console.error(`Failed to load gallery image at index ${currentIndex}`)
+                    setImageErrors(prev => {
+                      const newState = [...prev]
+                      newState[currentIndex] = true
+                      return newState
+                    })
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
@@ -203,14 +169,21 @@ export function GallerySlider() {
                 index === currentIndex ? "ring-2 ring-red-500" : ""
               }`}
             >
-              <Image 
-                src={image.url || "/placeholder.svg"} 
+              <OptimizedImage 
+                src={imageErrors[index] ? "/placeholder.svg" : image.url} 
                 alt={image.alt} 
-                fill 
                 className="object-cover"
                 quality={60}
                 sizes="(max-width: 768px) 20vw, 150px"
-                loading="lazy"
+                aspectRatio="aspect-[3/4]"
+                onError={() => {
+                  console.error(`Failed to load thumbnail at index ${index}`)
+                  setImageErrors(prev => {
+                    const newState = [...prev]
+                    newState[index] = true
+                    return newState
+                  })
+                }}
               />
               <div className={`absolute inset-0 bg-black/20 ${index === currentIndex ? "bg-black/0" : ""}`} />
             </motion.button>

@@ -14,31 +14,40 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    name: "Sarah Johnson",
-    role: "Film Director",
-    company: "Showmax Productions",
+    name: "Kate Actress",
+    role: "Actress & Media Personality",
+    company: "Kenyan Entertainment Industry",
     image: "/placeholder.svg",
     rating: 5,
     comment:
-      "Diana brings incredible energy and professionalism to every project. Her versatility as an actress and natural screen presence make her a joy to work with. She takes direction well and always delivers beyond expectations.",
+      "Dennis is a true artist with makeup brushes. His attention to detail and ability to enhance natural beauty is unmatched. He created the perfect look for my magazine cover shoot that was both elegant and striking. I wouldn't trust anyone else with my makeup for important events.",
   },
   {
-    name: "Michael Omondi",
-    role: "Brand Manager",
-    company: "Molped Kenya",
+    name: "Tanasha Donna",
+    role: "Musician & Influencer",
+    company: "Kenyan Music Industry",
     image: "/placeholder.svg",
     rating: 5,
     comment:
-      "Working with Diana on our campaign was fantastic. She connects authentically with audiences and delivers exceptional results. Her professionalism and dedication to the brand's vision were outstanding.",
+      "Working with Dennis on my music video was an incredible experience. He understands how to create makeup looks that translate beautifully on camera. His creativity and precision make him the best in the industry, and his positive energy on set keeps everyone in good spirits.",
   },
   {
-    name: "Priscilla Wanjiru",
-    role: "Creative Director",
-    company: "Digital Arts Studio",
+    name: "Nana Owiti",
+    role: "TV Host & Content Creator",
+    company: "Switch TV Kenya",
     image: "/placeholder.svg",
     rating: 5,
     comment:
-      "Diana's versatility and commitment to her craft sets her apart. She's become our go-to talent for various productions. Her ability to understand and execute creative direction is remarkable.",
+      "Dennis has been my go-to makeup artist for years. His ability to create flawless looks that last through long TV shoots is remarkable. Beyond his exceptional talent, he's professional, punctual, and always brings fresh ideas to the table. He's truly transformed how I approach beauty.",
+  },
+  {
+    name: "Vera Sidika",
+    role: "Entrepreneur & Socialite",
+    company: "Beauty & Fashion Industry",
+    image: "/placeholder.svg",
+    rating: 5,
+    comment:
+      "Dennis is a makeup genius! For my product launch event, he created a look that perfectly aligned with my brand's aesthetic while making me feel confident and beautiful. His expertise in color theory and skin tones is exceptional, and he's always up-to-date with the latest trends.",
   },
 ]
 

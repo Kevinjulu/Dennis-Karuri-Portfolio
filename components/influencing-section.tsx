@@ -1,101 +1,86 @@
 "use client"
 
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Instagram } from "lucide-react"
 import { motion } from "framer-motion"
+import { OptimizedImage } from "@/components/optimized-image"
+import { preloadImages } from "@/lib/utils"
+import { useEffect, useState } from "react"
 
 export function InfluencingSection() {
-  const brands = ["Co-operative Bank", "Naivas", "Tusker", "Various Brands"]
+  const brands = ["MAC Cosmetics", "Fenty Beauty", "Maybelline", "Local Beauty Brands"]
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({})
 
   const posts = [
     {
       id: 1,
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562619776.jpg-C9D4k2koNHed60ufSbnO6XmHg0YGvq.jpeg",
-      alt: "Diana in PINK branded content",
-      category: "Brand Collaboration",
+      image: "/images/Other images/Karuri (30).jpg",
+      alt: "Dennis showcasing makeup look",
+      category: "Beauty Tutorial",
     },
     {
       id: 2,
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740563245679.jpg-ZluwPKOW2OjuMpGbI1Ff1LScSl3AlN.jpeg",
-      alt: "Diana in champagne silk dress",
-      category: "Fashion Content",
+      image: "/images/Other images/Karuri (31).jpg",
+      alt: "Dennis with makeup client",
+      category: "Client Transformation",
     },
     {
       id: 3,
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562334188.jpg-qzdEMir4zzQn7sfQ1kPZ9SrcCYVS3Z.jpeg",
-      alt: "Diana in yellow dress at restaurant",
-      category: "Lifestyle Content",
+      image: "/images/Other images/Karuri (32).jpg",
+      alt: "Dennis at beauty event",
+      category: "Industry Event",
     },
     {
       id: 4,
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562380996.jpg-GZhkIAf9uYzvhqFog8KzjB1bG2YbbU.jpeg",
-      alt: "Diana in teal silk dress",
-      category: "Event Content",
+      image: "/images/Other images/Karuri (33).jpg",
+      alt: "Dennis with beauty products",
+      category: "Product Showcase",
     },
     {
       id: 5,
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740563087162.jpg-g6ZXdpf1UliyajlFTjbnulvb1TG9eg.jpeg",
-      alt: "Diana in polka dot top",
-      category: "Fashion Content",
+      image: "/images/Other images/Karuri (34).jpg",
+      alt: "Dennis creating makeup look",
+      category: "Behind the Scenes",
     },
     {
       id: 6,
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562856692.jpg-KlRgX94aE2x0PHjmeycYEmEl5P9GtW.jpeg",
-      alt: "Diana in casual outfit outdoors",
-      category: "Lifestyle Content",
+      image: "/images/Other images/Karuri (35).jpg",
+      alt: "Dennis at fashion show",
+      category: "Fashion Week",
     },
     {
       id: 7,
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562595365.jpg-Oqz7Gk2y06Nb4MQ0TmUCdhL85JHRmo.jpeg",
-      alt: "Diana in pink metallic dress",
-      category: "Fashion Content",
+      image: "/images/Other images/Karuri (36).jpg",
+      alt: "Dennis with celebrity client",
+      category: "Celebrity Collaboration",
     },
     {
       id: 8,
-      image:
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562512871.jpg-q9lkUNUDP7EpnTom59EzNu67VE7Y3r.jpeg",
-      alt: "Diana in black velvet dress",
-      category: "Fashion Content",
+      image: "/images/Other images/Karuri (37).jpg",
+      alt: "Dennis teaching makeup class",
+      category: "Masterclass",
     },
   ]
 
+  // Preload images after component mounts
+  useEffect(() => {
+    preloadImages(posts.map(post => post.image))
+      .catch(err => console.error('Error preloading influencer images:', err))
+  }, [])
+
   return (
-    <section className="py-20 px-4 md:px-6 relative overflow-hidden">
-      {/* Enhanced background decorative elements */}
-      <div className="absolute top-40 left-20 w-72 h-72 bg-red-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow"></div>
-      <div className="absolute bottom-40 right-20 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse-slow"></div>
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        <motion.h2
-          className="section-heading text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          Digital Influence
-        </motion.h2>
-
+    <section className="py-20 bg-gradient-to-b from-white to-pink-50">
+      <div className="container mx-auto px-4">
         <motion.div
-          className="flex flex-wrap justify-center gap-8 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
         >
-          {brands.map((brand, index) => (
-            <div key={index} className="glass-card p-4 rounded-xl hover:scale-105 transition-transform duration-300">
-              <p className="font-medium">{brand}</p>
-            </div>
-          ))}
+          <h2 className="text-4xl md:text-5xl font-playfair mb-4">Beauty Influencer</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Collaborating with top beauty brands and creating engaging content for a community of beauty enthusiasts.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -108,11 +93,17 @@ export function InfluencingSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
             >
-              <Image
-                src={post.image || "/placeholder.svg"}
+              <OptimizedImage
+                src={imageErrors[post.id] ? "/placeholder.svg" : post.image}
                 alt={post.alt}
-                fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
+                aspectRatio="aspect-square"
+                sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                quality={75}
+                onError={() => {
+                  console.error(`Failed to load influencer image: ${post.image}`)
+                  setImageErrors(prev => ({ ...prev, [post.id]: true }))
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-4 text-white">
@@ -124,31 +115,14 @@ export function InfluencingSection() {
         </div>
 
         <motion.div
-          className="mt-12 text-center flex flex-wrap justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 text-center"
         >
-          <Button
-            variant="outline"
-            size="lg"
-            className="gap-2 glass-button hover:scale-105 transition-transform duration-300"
-            onClick={() => window.open("https://www.instagram.com/dianaluvanda", "_blank")}
-          >
-            <Instagram className="h-5 w-5" />
-            200K+ on Instagram
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="gap-2 glass-button hover:scale-105 transition-transform duration-300"
-            onClick={() => window.open("https://www.tiktok.com/@dianaluvanda", "_blank")}
-          >
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-            </svg>
-            437K+ on TikTok
+          <Button className="bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 text-white px-6 py-3 rounded-full">
+            <Instagram className="mr-2 h-5 w-5" />
+            Follow on Instagram
           </Button>
         </motion.div>
       </div>

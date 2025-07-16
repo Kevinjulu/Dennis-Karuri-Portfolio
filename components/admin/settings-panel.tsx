@@ -19,7 +19,7 @@ export function SettingsPanel() {
 
   // General settings
   const [generalSettings, setGeneralSettings] = useState({
-    siteName: "Diana Luvanda",
+    siteName: "Dennis Karuri",
     siteDescription: "Actress, Model, and Digital Content Creator from Kenya",
     contactEmail: "contact@dianaluvanda.com",
     contactPhone: "+254 700 000 000",
@@ -28,11 +28,11 @@ export function SettingsPanel() {
 
   // SEO settings
   const [seoSettings, setSeoSettings] = useState({
-    metaTitle: "Diana Luvanda | Actress, Model & Content Creator",
+    metaTitle: "Dennis Karuri | Makeup Artist & Beauty Influencer",
     metaDescription:
-      "Diana Luvanda is a Kenyan actress, model, and digital content creator with appearances on Netflix, Showmax, and a strong social media presence.",
-    ogTitle: "Diana Luvanda | Actress & Content Creator",
-    ogDescription: "Discover Diana Luvanda's portfolio - Kenyan actress, model, and digital content creator.",
+      "Dennis Karuri is a renowned Kenyan makeup artist, beauty influencer, and digital content creator with a strong social media presence.",
+    ogTitle: "Dennis Karuri | Makeup Artist & Beauty Influencer",
+    ogDescription: "Discover Dennis Karuri's portfolio - Kenyan makeup artist and beauty influencer.",
     twitterHandle: "@dianaluvanda",
     googleAnalyticsId: "UA-XXXXXXXXX-X",
     indexingEnabled: true,

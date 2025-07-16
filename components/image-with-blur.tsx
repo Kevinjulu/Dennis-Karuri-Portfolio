@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 interface ImageWithBlurProps {
   src: string
@@ -24,7 +24,20 @@ export function ImageWithBlur({
   priority = false,
   quality = 75,
 }: ImageWithBlurProps) {
-  const [isLoading, setIsLoading] = useState(true)
+  // Start with false for server rendering to avoid hydration mismatch
+  const [isLoading, setIsLoading] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+  
+  // Set initial loading state after component mounts to prevent hydration mismatch
+  useEffect(() => {
+    setIsMounted(true)
+    setIsLoading(true)
+  }, [])
+  
+  // Only apply blur effect after component is mounted on client
+  const imageClass = isMounted
+    ? `duration-700 ease-in-out ${isLoading ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"} ${className}`
+    : className
 
   return (
     <div className={`${className} ${fill ? "relative" : ""}`}>
@@ -34,11 +47,7 @@ export function ImageWithBlur({
         fill={fill}
         width={!fill ? width : undefined}
         height={!fill ? height : undefined}
-        className={`
-          duration-700 ease-in-out
-          ${isLoading ? "scale-110 blur-2xl grayscale" : "scale-100 blur-0 grayscale-0"}
-          ${className}
-        `}
+        className={imageClass}
         onLoadingComplete={() => setIsLoading(false)}
         priority={priority}
         quality={quality}

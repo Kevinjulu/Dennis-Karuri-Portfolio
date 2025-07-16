@@ -7,23 +7,23 @@ import Link from "next/link"
 export function PressSection() {
   const pressItems = [
     {
-      title: "Africa Women Awards",
-      publication: "Award Nomination",
+      title: "Kenya's Top Beauty Influencer",
+      publication: "Fashion & Beauty Magazine",
       date: "2023",
-      quote: "Nominated for 'Breakout Actress of the Year' for her outstanding performances.",
-      link: "https://news.switchtv.ke",
+      quote: "Dennis Karuri has revolutionized the beauty industry in Kenya with his bold approach and exceptional talent.",
+      link: "https://fashionandbeauty.co.ke",
     },
     {
-      title: "Rising Star in Kenyan Entertainment",
-      publication: "Entertainment Weekly",
+      title: "Breaking Gender Norms in Beauty",
+      publication: "Lifestyle Africa",
       date: "2023",
-      quote: "Diana Luvanda is making waves in both traditional and digital media with her versatile talent.",
+      quote: "Dennis Karuri is challenging stereotypes and redefining beauty standards with his gender-defying style and confidence.",
     },
     {
-      title: "From Kaimosi to Netflix",
+      title: "From Agribusiness to Beauty Icon",
       publication: "Success Stories",
       date: "2022",
-      quote: "Her journey from humble beginnings to international streaming platforms inspires many young Kenyans.",
+      quote: "His journey from studying agribusiness to becoming one of Kenya's most sought-after makeup artists inspires many young creatives.",
     },
   ]
 

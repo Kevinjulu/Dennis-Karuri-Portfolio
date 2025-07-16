@@ -1,0 +1,106 @@
+# Explicitly allow .env files
+!.env
+!.env.local
+!.env.development
+!.env.production
+
+# Security and access keys
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+*.keystore
+id_rsa
+*.pub
+
+# Configuration files that might contain sensitive data
+config/secrets.*
+**/config/secrets.*
+**/credentials.*
+*auth.json
+*secrets.json
+
+# Database files
+*.sqlite
+*.db
+dump.rdb
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories that might contain sensitive data in lock files
+node_modules/
+jspm_packages/
+
+# Testing coverage and reports that might contain sensitive data
+coverage/
+.nyc_output/
+test-results/
+
+# Build outputs that might contain embedded secrets
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vuepress/dist
+
+# IDE and editor files that might contain workspace settings with secrets
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Local development files that might contain personal data
+.localdev/
+.personal/
+
+# Supabase
+.supabase/
+**/supabase/config.toml
+
+# Vercel
+.vercel
+
+# Package manager files that might contain auth tokens
+.npmrc
+.yarnrc
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Netlify
+.netlify/
+
+# MongoDB
+mongod.conf 

@@ -12,8 +12,12 @@ interface RotatingImageProps {
 
 export function RotatingImage({ images, alt, interval = 3000, className = "" }: RotatingImageProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
 
+  // Only start rotation after component is mounted on client
   useEffect(() => {
+    setIsMounted(true)
+    
     if (images.length <= 1) return
 
     const timer = setInterval(() => {
@@ -27,6 +31,25 @@ export function RotatingImage({ images, alt, interval = 3000, className = "" }: 
     return null
   }
 
+  // Show only the first image during server rendering
+  if (!isMounted) {
+    return (
+      <div className={`relative h-full w-full overflow-hidden ${className}`}>
+        <div className="absolute inset-0">
+          <Image
+            src={images[0]}
+            alt={`${alt} 1`}
+            fill
+            className="object-cover"
+            priority
+            quality={80}
+          />
+        </div>
+      </div>
+    )
+  }
+
+  // Client-side rotating images
   return (
     <div className={`relative h-full w-full overflow-hidden ${className}`}>
       {images.map((src, index) => (

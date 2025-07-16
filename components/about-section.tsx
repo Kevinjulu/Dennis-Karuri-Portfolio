@@ -8,10 +8,10 @@ import Link from "next/link"
 
 export function AboutSection() {
   const achievements = [
-    "Actress in Netflix & Showmax Productions",
-    "437K+ TikTok Followers",
-    "Award-Nominated Performer",
-    "Digital Content Creator",
+    "Celebrity Makeup Artist",
+    "238K+ Instagram Followers",
+    "231.5K+ TikTok Followers",
+    "Beauty Brand Collaborator",
   ]
 
   return (
@@ -45,8 +45,8 @@ export function AboutSection() {
           >
             <div className="col-span-4 row-span-3 relative rounded-2xl overflow-hidden">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562512871.jpg-q9lkUNUDP7EpnTom59EzNu67VE7Y3r.jpeg"
-                alt="Diana Luvanda Portrait"
+                src="/images/Other images/Karuri (1).jpg"
+                alt="Dennis Karuri Portrait"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -58,8 +58,8 @@ export function AboutSection() {
             </div>
             <div className="col-span-2 row-span-2 col-start-5 row-start-1 relative rounded-2xl overflow-hidden">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562381812.jpg-kovQtoD52PNqpBpkjIQlzk332wBrgF.jpeg"
-                alt="Diana Elegant Shot"
+                src="/images/Other images/Karuri (2).jpg"
+                alt="Dennis Elegant Shot"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 25vw"
@@ -71,8 +71,8 @@ export function AboutSection() {
             </div>
             <div className="col-span-2 row-span-2 col-start-5 row-start-3 relative rounded-2xl overflow-hidden">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562334188.jpg-7WU1GwavMtQpUZmKAsWKMKIIGWhSlW.jpeg"
-                alt="Diana Casual Shot"
+                src="/images/Other images/Karuri (3).jpg"
+                alt="Dennis Casual Shot"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 25vw"
@@ -84,8 +84,8 @@ export function AboutSection() {
             </div>
             <div className="col-span-3 row-span-2 col-start-1 row-start-4 relative rounded-2xl overflow-hidden">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562570375.jpg-GVGUtD7qIWaP2am7EqhgRvlwKlH3zd.jpeg"
-                alt="Diana Brand Shot"
+                src="/images/Other images/Karuri (5).jpg"
+                alt="Dennis Brand Shot"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -97,8 +97,8 @@ export function AboutSection() {
             </div>
             <div className="col-span-3 row-span-2 col-start-4 row-start-4 relative rounded-2xl overflow-hidden">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562985388.jpg-hd09rpWGlyY61KGhsWBy5qBH10EvtM.jpeg"
-                alt="Diana Fashion Shot"
+                src="/images/Karuri (6).jpg"
+                alt="Dennis Fashion Shot"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -120,14 +120,10 @@ export function AboutSection() {
           >
             <div className="prose prose-lg dark:prose-invert">
               <p className="text-lg leading-relaxed">
-                Born in Kaimosi, Vihiga County, Kenya, I've grown into a passionate actress and digital content creator.
-                My journey in the entertainment industry has been filled with exciting opportunities and meaningful
-                connections.
+                Dennis Karuri is a Kenyan makeup artist and beauty influencer, celebrated for his creative looks, gender-defying style, and confidence. Originally trained in agribusiness, he pivoted into beauty and rose to prominence with a unique blend of talent and bold expression.
               </p>
               <p className="text-lg leading-relaxed">
-                I value authenticity in everything I do, whether I'm in front of the camera or creating content for my
-                social media platforms. Through my work in film, television, and digital media, I aim to inspire others
-                and share stories that resonate with audiences across Africa and beyond.
+                He now runs a makeup studio, works with top brands, and inspires thousands through content and artistry. His authentic approach to beauty and self-expression has made him one of Kenya's most influential beauty personalities.
               </p>
             </div>
 

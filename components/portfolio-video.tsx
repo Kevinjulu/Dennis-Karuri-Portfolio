@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 
 interface PortfolioVideoProps {
   src: string
@@ -10,7 +10,13 @@ interface PortfolioVideoProps {
 
 export function PortfolioVideo({ src, poster, className = "" }: PortfolioVideoProps) {
   const [isPlaying, setIsPlaying] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Set mounted state after component mounts to prevent hydration mismatch
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const handlePlayPause = () => {
     if (videoRef.current) {
@@ -21,6 +27,23 @@ export function PortfolioVideo({ src, poster, className = "" }: PortfolioVideoPr
       }
       setIsPlaying(!isPlaying)
     }
+  }
+
+  // Simple static version for server-side rendering
+  if (!isMounted) {
+    return (
+      <div className={`relative w-full h-full ${className}`}>
+        <div className="w-full h-full bg-black/10">
+          {poster && (
+            <img 
+              src={poster} 
+              alt="Video thumbnail" 
+              className="w-full h-full object-cover"
+            />
+          )}
+        </div>
+      </div>
+    )
   }
 
   return (

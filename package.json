@@ -1,5 +1,5 @@
 {
-  "name": "diana-luvanda-portfolio",
+  "name": "dennis-karuri-portfolio",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -39,7 +39,7 @@
     "@radix-ui/react-toggle": "^1.1.1",
     "@radix-ui/react-toggle-group": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.6",
-    "@supabase/ssr": "^0.1.0",
+    "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.49.1",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.9",
@@ -84,6 +84,7 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^14.2.3",
     "@types/node": "^20.11.30",
+    "canvas": "^3.1.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.3",
     "eslint-config-prettier": "^10.1.2",

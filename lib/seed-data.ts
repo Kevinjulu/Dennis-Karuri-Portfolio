@@ -9,59 +9,59 @@ import SocialStats from './models/social';
 
 // Sample data
 const userData = {
-  email: 'admin@dianaluvanda.com',
-  password: 'diana2024', // This will be hashed
-  name: 'Diana Luvanda',
+  email: 'admin@denniskaruri.com',
+  password: 'dennis2024', // This will be hashed
+  name: 'Dennis Karuri',
   role: 'admin'
 };
 
 const portfolioData = [
   {
-    title: 'Netflix Series - Country Queen',
-    description: 'Played a supporting role in the first Kenyan Netflix series, Country Queen.',
-    category: 'acting',
-    imageUrl: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/country-queen-netflix-Gd2TyRUBRcZQbMDnWyMkODXMFDXpXA.jpg',
-    videoUrl: 'https://www.youtube.com/watch?v=CwcxrYMr2xo',
-    date: new Date('2022-07-15'),
+    title: 'Celebrity Makeup Transformation',
+    description: 'Makeup transformation for a high-profile Kenyan celebrity for a magazine cover shoot.',
+    category: 'makeup',
+    imageUrl: '/images/Karuri (10).jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=example1',
+    date: new Date('2023-07-15'),
     featured: true,
-    platform: 'Netflix',
+    platform: 'Magazine',
     order: 1
   },
   {
-    title: 'Showmax Drama - Pepeta',
-    description: 'Featured in the Showmax original drama series Pepeta.',
-    category: 'acting',
-    imageUrl: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pepeta-showmax-1lVRjMZJRLHqrpOdVFWOFHPZdYBRRt.jpg',
-    date: new Date('2022-11-24'),
+    title: 'Bridal Makeup Masterclass',
+    description: 'Hosted a sold-out masterclass teaching professional bridal makeup techniques.',
+    category: 'teaching',
+    imageUrl: '/images/Karuri (13).jpg',
+    date: new Date('2023-11-24'),
     featured: true,
-    platform: 'Showmax',
+    platform: 'Workshop',
     order: 2
   },
   {
     title: 'Fashion Week Kenya',
-    description: 'Walked the runway for top designers at Fashion Week Kenya.',
-    category: 'modeling',
-    imageUrl: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fashion-week-kenya-JiXfNjbUCwNxXVZmWHLHJEQGfvJXLW.jpg',
-    date: new Date('2023-03-18'),
+    description: 'Lead makeup artist for multiple designers at Fashion Week Kenya.',
+    category: 'fashion',
+    imageUrl: '/images/Karuri (14).jpg',
+    date: new Date('2024-03-18'),
     featured: true,
     order: 1
   },
   {
-    title: 'TikTok Brand Campaign - Coca Cola',
-    description: 'Led a viral TikTok campaign for Coca Cola reaching over 2 million views.',
+    title: 'Beauty Brand Collaboration',
+    description: 'Collaborated with a major beauty brand to create a limited edition makeup collection.',
     category: 'influencing',
-    imageUrl: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tiktok-campaign-coca-cola-nkDQCxYqQTFfXBPBdRHZNNQJMwXyEm.jpg',
-    videoUrl: 'https://www.tiktok.com/@dianaluvanda/video/123456789',
+    imageUrl: '/images/Karuri (15).jpg',
+    videoUrl: 'https://www.tiktok.com/@denniskaruri/video/123456789',
     date: new Date('2023-06-12'),
     featured: true,
     platform: 'TikTok',
     order: 1
   },
   {
-    title: 'Event Host - Nairobi Fashion Gala',
-    description: 'Served as the main presenter for the annual Nairobi Fashion Gala.',
-    category: 'presenting',
-    imageUrl: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nairobi-fashion-gala-host-4Vy8XpqUYnkfNKYJqrFSzWWbQcgkLl.jpg',
+    title: 'Celebrity Red Carpet Makeup',
+    description: 'Created stunning red carpet looks for celebrities at the Nairobi Fashion Gala.',
+    category: 'makeup',
+    imageUrl: '/images/Karuri (16).jpg',
     date: new Date('2023-09-30'),
     featured: true,
     order: 1
@@ -71,31 +71,24 @@ const portfolioData = [
 const socialStatsData = [
   {
     platform: 'instagram',
-    followers: 125000,
-    handle: '@dianaluvanda',
-    url: 'https://instagram.com/dianaluvanda',
+    followers: 238000,
+    handle: '@_denniskaruri',
+    url: 'https://instagram.com/_denniskaruri',
     icon: 'instagram'
   },
   {
     platform: 'tiktok',
-    followers: 250000,
-    handle: '@dianaluvanda',
-    url: 'https://tiktok.com/@dianaluvanda',
+    followers: 231500,
+    handle: '@denniskaruri',
+    url: 'https://tiktok.com/@denniskaruri',
     icon: 'tiktok'
   },
   {
-    platform: 'youtube',
-    followers: 50000,
-    handle: 'Diana Luvanda',
-    url: 'https://youtube.com/c/dianaluvanda',
-    icon: 'youtube'
-  },
-  {
-    platform: 'twitter',
-    followers: 35000,
-    handle: '@dianaluvanda',
-    url: 'https://twitter.com/dianaluvanda',
-    icon: 'twitter'
+    platform: 'facebook',
+    followers: 13000,
+    handle: 'Dennis Karuri',
+    url: 'https://facebook.com/denniskaruri',
+    icon: 'facebook'
   }
 ];
 

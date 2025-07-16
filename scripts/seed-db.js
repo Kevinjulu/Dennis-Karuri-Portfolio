@@ -1,4 +1,4 @@
-// Seed database script for Diana Luvanda Portfolio
+// Seed database script for Dennis Karuri Portfolio
 const { seedDatabase } = require('./seed-data');
 
 // Run the seed function

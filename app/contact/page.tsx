@@ -41,8 +41,8 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen pt-24 pb-16">
       <SEO
-        title="Contact Me | Diana Luvanda"
-        description="Get in touch with Diana Luvanda for collaborations, bookings, or inquiries. Reach out for acting opportunities, modeling projects, or content creation partnerships."
+        title="Contact Me | Dennis Karuri"
+        description="Get in touch with Dennis Karuri for makeup services, beauty consultations, or collaborations. Reach out for makeup artistry, beauty influencing, or content creation partnerships."
         canonicalUrl="/contact"
       />
 
@@ -68,52 +68,56 @@ export default function ContactPage() {
               variants={fadeInUp}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className="glass-card p-8 rounded-xl h-full">
-                <h2 className="text-2xl font-bold mb-6">Send Me a Message</h2>
+              <div className="glass-card p-8 rounded-xl h-full bg-white/5 backdrop-blur-sm border border-white/10">
+                <h2 className="text-2xl font-bold mb-6 text-foreground">Send Me a Message</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">Your Name</label>
+                      <label className="text-sm font-medium text-foreground">Your Name</label>
                       <Input
                         placeholder="Enter your name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         required
+                        className="bg-white/10 border-white/20 text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-medium">Your Email</label>
+                      <label className="text-sm font-medium text-foreground">Your Email</label>
                       <Input
                         type="email"
                         placeholder="Enter your email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         required
+                        className="bg-white/10 border-white/20 text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Subject</label>
+                    <label className="text-sm font-medium text-foreground">Subject</label>
                     <Input
                       placeholder="What is this regarding?"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                       required
+                      className="bg-white/10 border-white/20 text-foreground placeholder:text-muted-foreground"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Message</label>
+                    <label className="text-sm font-medium text-foreground">Message</label>
                     <Textarea
                       placeholder="Your message"
                       rows={6}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       required
+                      className="bg-white/10 border-white/20 text-foreground placeholder:text-muted-foreground resize-none"
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-red-500 to-rose-400 hover:from-red-600 hover:to-rose-500 text-white"
+                    className="w-full bg-gradient-to-r from-red-500 to-rose-400 hover:from-red-600 hover:to-rose-500 text-white border-none font-medium"
                   >
                     <Send className="mr-2 h-4 w-4" />
                     Send Message
@@ -129,8 +133,8 @@ export default function ContactPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex flex-col"
             >
-              <div className="glass-card p-8 rounded-xl mb-8">
-                <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
+              <div className="glass-card p-8 rounded-xl mb-8 bg-white/5 backdrop-blur-sm border border-white/10">
+                <h2 className="text-2xl font-bold mb-6 text-foreground">Contact Information</h2>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="bg-red-50 p-3 rounded-full text-red-500">
@@ -138,7 +142,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-medium">Email</h3>
-                      <p className="text-muted-foreground">contact@dianaluvanda.com</p>
+                      <p className="text-muted-foreground">contact@denniskaruri.com</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -166,7 +170,7 @@ export default function ContactPage() {
                 <h2 className="text-2xl font-bold mb-6">Follow Me</h2>
                 <div className="space-y-6">
                   <Link
-                    href="https://www.instagram.com/dianaluvanda"
+                    href="https://www.instagram.com/_denniskaruri"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 rounded-lg hover:bg-red-50 transition-colors"
@@ -174,11 +178,11 @@ export default function ContactPage() {
                     <Instagram className="h-6 w-6 text-red-500" />
                     <div>
                       <h3 className="font-medium">Instagram</h3>
-                      <p className="text-muted-foreground">@dianaluvanda</p>
+                      <p className="text-muted-foreground">@_denniskaruri</p>
                     </div>
                   </Link>
                   <Link
-                    href="https://www.youtube.com/@DianaLuvanda"
+                    href="https://www.youtube.com/@DennisKaruri"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 rounded-lg hover:bg-red-50 transition-colors"
@@ -186,11 +190,11 @@ export default function ContactPage() {
                     <Youtube className="h-6 w-6 text-red-500" />
                     <div>
                       <h3 className="font-medium">YouTube</h3>
-                      <p className="text-muted-foreground">@DianaLuvanda</p>
+                      <p className="text-muted-foreground">@DennisKaruri</p>
                     </div>
                   </Link>
                   <Link
-                    href="https://www.tiktok.com/@dianaluvanda"
+                    href="https://www.tiktok.com/@denniskaruri"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 rounded-lg hover:bg-red-50 transition-colors"
@@ -200,7 +204,7 @@ export default function ContactPage() {
                     </svg>
                     <div>
                       <h3 className="font-medium">TikTok</h3>
-                      <p className="text-muted-foreground">@dianaluvanda</p>
+                      <p className="text-muted-foreground">@denniskaruri</p>
                     </div>
                   </Link>
                 </div>

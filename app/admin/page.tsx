@@ -55,11 +55,11 @@ export default function AdminLoginPage() {
         <div className="text-center">
           <Link href="/" className="inline-block mb-8">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562595365.jpg-i5hFfoSILVYzJcvykuEVUukufxsIwX.jpeg"
-              alt="Diana Luvanda"
-              width={80}
-              height={80}
-              className="rounded-full border-2 border-red-100"
+              src="/placeholder-user.jpg"
+              alt="Dennis Karuri"
+              width={40}
+              height={40}
+              className="rounded-full"
             />
           </Link>
           <h1 className="text-3xl font-bold font-playfair mb-2">Admin Login</h1>

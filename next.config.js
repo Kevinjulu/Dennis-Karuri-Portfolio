@@ -10,11 +10,14 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['mongoose'],
     optimizeCss: true,
-    optimizeServerReact: true,
+    // optimizeServerReact: true,
   },
   images: {
-    domains: ['hebbkx1anhila5yf.public.blob.vercel-storage.com'],
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
+      },
       {
         protocol: 'https',
         hostname: '**',
@@ -25,6 +28,9 @@ const nextConfig = {
     minimumCacheTTL: 60,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   // Optimized for Vercel deployment
   output: 'standalone',
@@ -72,6 +78,10 @@ const nextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
           },
+          {
+            key: 'Accept-Encoding',
+            value: 'br, gzip, deflate',
+          },
         ],
       },
       {
@@ -106,6 +116,21 @@ const nextConfig = {
         chunks: 'all',
         maxInitialRequests: 25,
         minSize: 20000,
+        cacheGroups: {
+          // Create a vendors chunk for node_modules
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+            priority: 10,
+          },
+          // Create a commons chunk for shared code
+          commons: {
+            name: 'commons',
+            minChunks: 2,
+            priority: 5,
+          },
+        },
       };
     }
     
@@ -113,5 +138,5 @@ const nextConfig = {
   },
 }
 
-// Apply the PWA and Bundle Analyzer wrappers
 module.exports = withBundleAnalyzer(withPWA(nextConfig));
+// module.exports = withBundleAnalyzer(nextConfig);

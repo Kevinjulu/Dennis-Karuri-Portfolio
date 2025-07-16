@@ -2,28 +2,12 @@ import type React from "react"
 import type { Metadata } from "next"
 import "@/styles/globals.css"
 import { Inter, Playfair_Display, Montserrat } from "next/font/google"
-import dynamic from "next/dynamic"
 import { NavMenu } from "@/components/ui/nav-menu"
+import { ToasterProvider } from "@/components/providers/toaster-provider"
+import { Footer } from "@/components/footer"
+import { ClientOnly } from "@/components/client-only"
 
-// Dynamically import components to reduce initial load time
-const Footer = dynamic(() => import("@/components/footer").then(mod => mod.Footer), {
-  ssr: true,
-  loading: () => <footer className="py-10 md:py-12 px-4 md:px-6 mt-12 md:mt-16"><div className="container mx-auto"></div></footer>
-})
-
-const AuthProvider = dynamic(() => import("@/contexts/auth-context").then(mod => mod.AuthProvider), {
-  ssr: true
-})
-
-// Import service worker registration component
-const ServiceWorkerRegistration = dynamic(() => import("./service-worker-registration"), {
-  ssr: false
-})
-
-// Import Vercel Analytics
-const VercelAnalytics = dynamic(() => import("./analytics").then(mod => mod.VercelAnalytics), {
-  ssr: false
-})
+// We'll handle auth context differently to avoid client/server component conflicts
 
 // Optimize font loading
 const inter = Inter({
@@ -49,61 +33,64 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: "Diana Luvanda | Actress, Model & Content Creator",
-    template: "%s | Diana Luvanda",
+    default: "Dennis Karuri | Makeup Artist & Beauty Influencer",
+    template: "%s | Dennis Karuri",
   },
   description:
-    "Diana Luvanda is a Kenyan actress, model, and digital content creator with appearances on Netflix, Showmax, and a strong social media presence.",
+    "Dennis Karuri is a Kenyan makeup artist and beauty influencer, celebrated for his creative looks, gender-defying style, and confidence. He runs a makeup studio and works with top brands.",
   keywords: [
-    "Diana Luvanda",
-    "Actress",
-    "Model",
-    "Content Creator",
+    "Dennis Karuri",
+    "Makeup Artist",
+    "Beauty Influencer",
+    "Fashion Personality",
     "Kenya",
-    "Netflix",
-    "Showmax",
+    "Makeup Studio",
+    "Beauty Brands",
     "Digital Influencer",
     "Brand Ambassador",
     "African Talent",
   ],
-  authors: [{ name: "Diana Luvanda" }],
-  creator: "Diana Luvanda",
-  publisher: "Diana Luvanda",
+  authors: [{ name: "Dennis Karuri" }],
+  creator: "Dennis Karuri",
+  publisher: "Dennis Karuri",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://dianaluvanda.com"),
+  metadataBase: new URL("https://denniskaruri.com"),
   alternates: {
-    canonical: "https://dianaluvanda.com",
+    canonical: "https://denniskaruri.com",
+    types: {
+      'application/rss+xml': 'https://denniskaruri.com/rss.xml',
+    },
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://dianaluvanda.com",
-    title: "Diana Luvanda | Actress, Model & Content Creator",
+    url: "https://denniskaruri.com",
+    title: "Dennis Karuri | Makeup Artist & Beauty Influencer",
     description:
-      "Diana Luvanda is a Kenyan actress, model, and digital content creator with appearances on Netflix, Showmax, and a strong social media presence.",
-    siteName: "Diana Luvanda",
+      "Dennis Karuri is a Kenyan makeup artist and beauty influencer, celebrated for his creative looks, gender-defying style, and confidence. He runs a makeup studio and works with top brands.",
+    siteName: "Dennis Karuri",
     images: [
       {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562512871.jpg-q9lkUNUDP7EpnTom59EzNu67VE7Y3r.jpeg",
+        url: "/images/Karuri (1).jpg",
         width: 1200,
         height: 630,
-        alt: "Diana Luvanda",
+        alt: "Dennis Karuri",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Diana Luvanda | Actress, Model & Content Creator",
+    title: "Dennis Karuri | Makeup Artist & Beauty Influencer",
     description:
-      "Diana Luvanda is a Kenyan actress, model, and digital content creator with appearances on Netflix, Showmax, and a strong social media presence.",
+      "Dennis Karuri is a Kenyan makeup artist and beauty influencer, celebrated for his creative looks, gender-defying style, and confidence. He runs a makeup studio and works with top brands.",
     images: [
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1740562512871.jpg-q9lkUNUDP7EpnTom59EzNu67VE7Y3r.jpeg",
+      "/images/Karuri (1).jpg",
     ],
-    creator: "@dianaluvanda",
+    creator: "@_denniskaruri",
   },
   robots: {
     index: true,
@@ -117,12 +104,25 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: [
+      { url: "/favicon.ico" },
+    ],
   },
+  manifest: "/site.webmanifest",
   verification: {
     google: "google-site-verification=YOUR_VERIFICATION_CODE",
+  },
+  other: {
+    "theme-color": "#ffffff",
+    "x-dns-prefetch-control": "on",
   },
 }
 
@@ -132,42 +132,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${montserrat.variable}`}>
-      <head>
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#ffffff" />
-        
-        {/* Performance optimizations */}
-        {/* Preconnect to domains for faster resource loading */}
-        <link rel="preconnect" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com" />
-        <link rel="dns-prefetch" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com" />
-        
-        {/* Preload critical fonts */}
-        <link rel="preload" as="font" href="/fonts/inter.woff2" type="font/woff2" crossOrigin="anonymous" />
-        
-        {/* Preload critical CSS */}
-        <link rel="preload" href="/_next/static/css/app.css" as="style" />
-        
-        {/* Add resource hints for faster navigation */}
-        <link rel="prefetch" href="/about" />
-        <link rel="prefetch" href="/portfolio" />
-        
-        {/* Add browser hints for better performance */}
-        <meta httpEquiv="x-dns-prefetch-control" content="on" />
-      </head>
-      <body className="font-montserrat bg-gradient-to-b from-[#FFF5F5] to-[#FFF8F8] min-h-screen">
-        <AuthProvider>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${montserrat.variable}`} suppressHydrationWarning>
+      <body className="font-montserrat bg-gradient-to-b from-[#FFF5F5] to-[#FFF8F8] min-h-screen" suppressHydrationWarning>
+        {/* Wrap client components in ClientOnly to prevent hydration mismatches */}
+        <ClientOnly skipHydration={true} fallback={<div className="h-16"></div>}>
           <NavMenu />
-          <main className="content-wrapper">
-            {children}
-          </main>
+        </ClientOnly>
+        
+        <main className="content-wrapper">
+          {children}
+        </main>
+        
+        <ClientOnly skipHydration={true}>
           <Footer />
-          <ServiceWorkerRegistration />
-          <VercelAnalytics />
-        </AuthProvider>
+          <ToasterProvider />
+        </ClientOnly>
       </body>
     </html>
   )

@@ -1,4 +1,4 @@
-// Seed data content for Diana Luvanda Portfolio
+// Seed data content for Dennis Karuri Portfolio
 
 // Admin users
 const userData = [
@@ -208,7 +208,7 @@ const socialStatsData = [
   {
     platform: 'instagram',
     followers: 125000,
-    handle: '@dianaluvanda',
+    handle: 'Dennis Karuri',
     url: 'https://instagram.com/dianaluvanda',
     icon: 'instagram',
     updatedAt: new Date('2023-12-01')
@@ -216,7 +216,7 @@ const socialStatsData = [
   {
     platform: 'tiktok',
     followers: 250000,
-    handle: '@dianaluvanda',
+    handle: 'Dennis Karuri',
     url: 'https://tiktok.com/@dianaluvanda',
     icon: 'tiktok',
     updatedAt: new Date('2023-12-01')
@@ -224,7 +224,7 @@ const socialStatsData = [
   {
     platform: 'youtube',
     followers: 50000,
-    handle: 'Diana Luvanda',
+    handle: 'Dennis Karuri',
     url: 'https://youtube.com/c/dianaluvanda',
     icon: 'youtube',
     updatedAt: new Date('2023-12-01')
@@ -232,7 +232,7 @@ const socialStatsData = [
   {
     platform: 'twitter',
     followers: 35000,
-    handle: '@dianaluvanda',
+    handle: 'Dennis Karuri',
     url: 'https://twitter.com/dianaluvanda',
     icon: 'twitter',
     updatedAt: new Date('2023-12-01')
@@ -240,7 +240,7 @@ const socialStatsData = [
   {
     platform: 'facebook',
     followers: 45000,
-    handle: 'Diana Luvanda',
+    handle: 'Dennis Karuri',
     url: 'https://facebook.com/dianaluvandaofficial',
     icon: 'facebook',
     updatedAt: new Date('2023-12-01')
@@ -248,7 +248,7 @@ const socialStatsData = [
   {
     platform: 'linkedin',
     followers: 15000,
-    handle: 'Diana Luvanda',
+    handle: 'Dennis Karuri',
     url: 'https://linkedin.com/in/dianaluvanda',
     icon: 'linkedin',
     updatedAt: new Date('2023-12-01')
@@ -422,13 +422,13 @@ const mediaData = [
 const settingsData = [
   {
     key: 'site_title',
-    value: 'Diana Luvanda | Actress, Model & Content Creator',
+    value: 'Dennis Karuri | Makeup Artist & Beauty Influencer',
     category: 'seo',
     description: 'Main website title used for SEO and browser tabs'
   },
   {
     key: 'site_description',
-    value: 'Diana Luvanda is a Kenyan actress, model, and digital content creator with appearances on Netflix, Showmax, and a strong social media presence.',
+    value: 'Dennis Karuri is a renowned Kenyan makeup artist, beauty influencer, and digital content creator with a strong social media presence.',
     category: 'seo',
     description: 'Main website description used for SEO'
   },
@@ -468,7 +468,7 @@ const settingsData = [
   },
   {
     key: 'about_text',
-    value: 'Diana Luvanda is a versatile Kenyan actress, model, and digital content creator. With appearances on major platforms like Netflix and Showmax, she has established herself as a rising star in the African entertainment industry. Diana is passionate about storytelling and using her platform to showcase African talent and culture to the world.',
+    value: 'Dennis Karuri is a versatile Kenyan makeup artist, beauty influencer, and digital content creator. With a strong presence on social media and collaborations with major brands, he has established himself as a leading figure in the African beauty industry.',
     category: 'content',
     description: 'Main about text for the about section'
   },

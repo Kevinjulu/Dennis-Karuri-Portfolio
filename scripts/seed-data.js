@@ -1,4 +1,4 @@
-// MongoDB Atlas Seed Script for Diana Luvanda Portfolio
+// MongoDB Atlas Seed Script for Dennis Karuri Portfolio
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 

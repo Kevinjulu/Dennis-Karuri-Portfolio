@@ -1,7 +1,7 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
 // Use the provided MongoDB Atlas connection string
-const uri = "mongodb+srv://dianaluvanda:WhLgW1glrv92D2Qq@diana-luvanda-potfolio.g9incln.mongodb.net/?retryWrites=true&w=majority&appName=Diana-Luvanda-Potfolio";
+const uri = process.env.MONGODB_URI || "mongodb+srv://denniskaruri:YourNewPassword@dennis-karuri-portfolio.mongodb.net/?retryWrites=true&w=majority&appName=Dennis-Karuri-Portfolio";
 
 // MongoDB client options with Stable API version
 const clientOptions = { 

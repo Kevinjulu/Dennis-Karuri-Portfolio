@@ -1,40 +1,36 @@
 "use client"
 
 import Link from "next/link"
-import { Instagram, Youtube, Twitter, Heart, ArrowUp } from "lucide-react"
+import { Instagram, Facebook, Heart, ArrowUp } from "lucide-react"
 import { motion } from "framer-motion"
 
 export function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const socialLinks = [
     {
-      name: "YouTube",
-      href: "https://www.youtube.com/@DianaLuvanda",
-      icon: <Youtube className="h-5 w-5" />,
-      hoverColor: "group-hover:text-red-500"
-    },
-    {
       name: "Instagram",
-      href: "https://www.instagram.com/dianaluvanda",
+      href: "https://www.instagram.com/_denniskaruri",
       icon: <Instagram className="h-5 w-5" />,
       hoverColor: "group-hover:text-pink-500"
     },
     {
       name: "TikTok",
-      href: "https://www.tiktok.com/@dianaluvanda",
+      href: "https://www.tiktok.com/@denniskaruri",
       icon: <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
             </svg>,
       hoverColor: "group-hover:text-black"
     },
     {
-      name: "Twitter",
-      href: "https://twitter.com/dianaluvanda",
-      icon: <Twitter className="h-5 w-5" />,
-      hoverColor: "group-hover:text-blue-400"
+      name: "Facebook",
+      href: "https://www.facebook.com/denniskaruri",
+      icon: <Facebook className="h-5 w-5" />,
+      hoverColor: "group-hover:text-blue-600"
     }
   ];
 
@@ -72,8 +68,8 @@ export function Footer() {
             transition={{ duration: 0.5 }}
           >
             <Link href="/" className="text-3xl font-bold font-playfair relative group">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-rose-400">Diana</span>
-              <span className="text-sm ml-1 opacity-70 group-hover:opacity-100 transition-opacity">Luvanda</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-rose-400">Dennis</span>
+              <span className="text-sm ml-1 opacity-70 group-hover:opacity-100 transition-opacity">Karuri</span>
               <motion.div 
                 className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-red-500 to-rose-400 w-0 group-hover:w-full transition-all duration-300"
                 initial={{ width: 0 }}
@@ -82,10 +78,10 @@ export function Footer() {
               ></motion.div>
             </Link>
             <p className="text-sm text-muted-foreground mt-3 max-w-xs text-center lg:text-left">
-              Actress • Model • Digital Content Creator
+              Makeup Artist • Beauty Influencer • Fashion Personality
             </p>
             <p className="text-xs text-muted-foreground mt-4 max-w-xs text-center lg:text-left">
-              Creating authentic content and bringing characters to life on screen.
+              Creating stunning makeup looks and inspiring through beauty artistry.
             </p>
           </motion.div>
 
@@ -154,7 +150,7 @@ export function Footer() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Diana Luvanda. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Dennis Karuri. All rights reserved.</p>
             <p className="flex items-center gap-1">
               Made with <Heart className="h-3 w-3 text-red-500 animate-pulse" /> by{" "}
               <Link

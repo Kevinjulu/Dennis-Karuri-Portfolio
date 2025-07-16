@@ -45,19 +45,19 @@ interface SettingsState {
 
 const defaultSettings: SettingsState = {
   general: {
-    siteName: "Diana Luvanda",
-    siteDescription: "Actress, Model & Digital Content Creator",
-    contactEmail: "contact@dianaluvanda.com",
+    siteName: "Dennis Karuri",
+    siteDescription: "Makeup Artist & Beauty Influencer",
+    contactEmail: "contact@denniskaruri.com",
     phoneNumber: "",
-    footerText: "© 2025 Diana Luvanda. All rights reserved.",
+    footerText: "© 2025 Dennis Karuri. All rights reserved.",
   },
   social: {
-    instagram: "https://instagram.com/dianaluvanda",
-    twitter: "https://twitter.com/dianaluvanda",
-    tiktok: "https://tiktok.com/@dianaluvanda",
-    youtube: "https://youtube.com/dianaluvanda",
-    facebook: "https://facebook.com/dianaluvanda",
-    linkedin: "https://linkedin.com/in/dianaluvanda",
+    instagram: "https://instagram.com/denniskaruri",
+    twitter: "https://twitter.com/denniskaruri",
+    tiktok: "https://tiktok.com/@denniskaruri",
+    youtube: "https://youtube.com/denniskaruri",
+    facebook: "https://facebook.com/denniskaruri",
+    linkedin: "https://linkedin.com/in/denniskaruri",
   },
   appearance: {
     primaryColor: "#FF0000",
@@ -67,8 +67,8 @@ const defaultSettings: SettingsState = {
     itemsPerPage: 12,
   },
   seo: {
-    metaTitle: "Diana Luvanda | Actress, Model & Digital Content Creator",
-    metaDescription: "Diana Luvanda is a talented actress, model and digital content creator based in Kenya.",
+    metaTitle: "Dennis Karuri | Makeup Artist & Beauty Influencer",
+    metaDescription: "Dennis Karuri is a renowned Kenyan makeup artist, beauty influencer, and digital content creator.",
     ogImage: "/images/diana-og.jpg",
     googleAnalyticsId: "",
   },

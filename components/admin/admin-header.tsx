@@ -22,7 +22,7 @@ export function AdminHeader() {
           </button>
 
           <Link href="/admin/dashboard" className="flex items-center">
-            <span className="text-xl font-bold text-red-500">Diana Luvanda</span>
+            <span className="text-xl font-bold text-red-500">Dennis Karuri</span>
             <span className="ml-2 text-sm bg-gray-100 px-2 py-1 rounded-md">Admin</span>
           </Link>
         </div>

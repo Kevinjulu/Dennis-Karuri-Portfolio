@@ -14,10 +14,15 @@ export function NavMenu() {
   const pathname = usePathname()
   const sheetTriggerRef = React.useRef<HTMLButtonElement>(null)
 
-  React.useEffect(() => {
+  // Only run client-side code
+  React.useEffect(() => {    
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
     }
+    
+    // Check initial scroll position
+    setScrolled(window.scrollY > 50)
+    
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -48,9 +53,15 @@ export function NavMenu() {
         }`}
       >
         <div className="container px-4 md:px-6 flex items-center justify-between">
-          <Link href="/" className="text-xl md:text-2xl font-bold font-playfair">
-            <span className="gradient-text">Diana</span>
-            <span className="text-xs md:text-sm ml-1">Luvanda</span>
+          <Link href="/" className="text-3xl font-bold font-playfair relative group">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-rose-400">Dennis</span>
+            <span className="text-sm ml-1 opacity-70 group-hover:opacity-100 transition-opacity">Karuri</span>
+            <motion.div 
+              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-red-500 to-rose-400 w-0 group-hover:w-full transition-all duration-300"
+              initial={{ width: 0 }}
+              animate={{ width: pathname === "/" ? "100%" : "0%" }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            ></motion.div>
           </Link>
 
           {/* Desktop Navigation */}

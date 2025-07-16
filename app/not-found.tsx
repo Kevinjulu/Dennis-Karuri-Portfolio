@@ -1,17 +1,20 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { SEO } from "@/components/seo"
 import { Home } from "lucide-react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Page Not Found | Dennis Karuri",
+  description: "The page you are looking for does not exist.",
+  robots: {
+    index: false,
+    follow: false
+  }
+}
 
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 py-16">
-      <SEO
-        title="Page Not Found | Diana Luvanda"
-        description="The page you are looking for does not exist."
-        noIndex={true}
-      />
-
       <div className="text-center max-w-md">
         <h1 className="text-6xl font-bold text-red-500 mb-4">404</h1>
         <h2 className="text-2xl font-bold mb-4">Page Not Found</h2>

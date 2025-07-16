@@ -9,6 +9,7 @@ interface OptimizedImageProps extends Omit<ImageProps, 'onLoadingComplete'> {
   lowQualitySrc?: string
   aspectRatio?: string
   containerClassName?: string
+  preload?: boolean
 }
 
 /**
@@ -17,16 +18,19 @@ interface OptimizedImageProps extends Omit<ImageProps, 'onLoadingComplete'> {
  * - Lazy loading with proper priority handling
  * - Automatic blur effect while loading
  * - Fallback image support
+ * - Preloading support for critical images
+ * - Automatic WebP/AVIF format selection
  */
 export function OptimizedImage({
   src,
   alt,
   className,
-  fallbackSrc = '/images/placeholder.jpg',
+  fallbackSrc = '/placeholder.svg',
   lowQualitySrc,
   aspectRatio = 'aspect-square',
   containerClassName,
   priority = false,
+  preload = false,
   ...props
 }: OptimizedImageProps) {
   const [loading, setLoading] = useState(!priority)
@@ -40,6 +44,17 @@ export function OptimizedImage({
     setImageSrc(src)
   }, [src, priority])
 
+  // Preload image if specified
+  useEffect(() => {
+    if (preload && typeof window !== 'undefined' && typeof src === 'string') {
+      const img = new window.Image()
+      img.src = src
+    }
+  }, [preload, src])
+
+  // Generate blur data URL for placeholder
+  const blurDataURL = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2ZXJzaW9uPSIxLjEiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZmZlNGU2Ii8+PC9zdmc+"
+
   return (
     <div className={cn('relative overflow-hidden', aspectRatio, containerClassName)}>
       {/* Show low quality image while loading */}
@@ -49,8 +64,11 @@ export function OptimizedImage({
           alt={alt}
           className={cn('object-cover transition-opacity duration-300', className)}
           fill
-          sizes={props.sizes || '(max-width: 768px) 100vw, 50vw'}
+          sizes={props.sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'}
           quality={10}
+          loading="eager"
+          placeholder="blur"
+          blurDataURL={blurDataURL}
         />
       )}
       
@@ -63,12 +81,15 @@ export function OptimizedImage({
           className
         )}
         fill
-        sizes={props.sizes || '(max-width: 768px) 100vw, 50vw'}
-        quality={props.quality || 85}
+        sizes={props.sizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'}
+        quality={props.quality || 80}
         priority={priority}
         loading={priority ? undefined : 'lazy'}
+        placeholder="blur"
+        blurDataURL={blurDataURL}
         onLoad={() => setLoading(false)}
         onError={() => {
+          console.error(`Failed to load image: ${src}`)
           setError(true)
           setLoading(false)
         }}
@@ -81,11 +102,4 @@ export function OptimizedImage({
       )}
     </div>
   )
-}
-
-/**
- * Creates a low quality placeholder URL for progressive image loading
- */
-export function createBlurDataURL(width = 100, height = 100, quality = 30): string {
-  return `data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width} ${height}'%3E%3Cfilter id='b' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='20'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' x='0' y='0' fill='%23f8f8f8' filter='url(%23b)'/%3E%3C/svg%3E`
 }

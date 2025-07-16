@@ -1,0 +1,364 @@
+"use client"
+
+import { motion } from "framer-motion"
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Film, Camera, Mic, Play } from "lucide-react"
+import { YouTubeEmbed } from "@/components/youtube-embed"
+import { ImageWithBlur } from "@/components/image-with-blur"
+import { RotatingImage } from "@/components/rotating-image"
+import { PortfolioVideo } from "@/components/portfolio-video"
+
+export default function PortfolioPage() {
+  const [filter, setFilter] = useState("all")
+
+  // Featured videos with YouTube IDs
+  const featuredVideos = [
+    {
+      id: "1Yb00blInuw", // Dennis Karuri YouTube video 1
+      title: "Dennis Karuri | Makeup Artist & Beauty Influencer",
+      description:
+        "Showcasing my artistry and passion for makeup, highlighting my journey as a leading beauty influencer in Kenya.",
+      type: "youtube",
+    },
+    {
+      id: "S4im3wGxSP8", // Dennis Karuri YouTube video 2
+      title: "Dennis Karuri | Makeup Masterclass",
+      description:
+        "A professional makeup masterclass where I share my expert techniques and industry secrets for flawless looks.",
+      type: "tutorial",
+    },
+    {
+      id: "dr2_8S1NWAA", // Dennis Karuri YouTube video 3
+      title: "Dennis Karuri | Beauty Industry Insights",
+      description: "Discussing trends, challenges, and opportunities in the beauty industry from my perspective as a leading makeup artist.",
+      type: "interview",
+    },
+    {
+      id: "Wj844oPp2ro", // Dennis Karuri YouTube video 4
+      title: "Dennis Karuri | Brand Collaborations",
+      description: "Exploring my partnerships with major beauty brands and the creative process behind successful collaborations.",
+      type: "collaboration",
+    },
+    {
+      id: "cpPVer2HyWY", // Dennis Karuri YouTube video 5
+      title: "Dennis Karuri | Red Carpet Makeup",
+      description: "Behind the scenes of creating stunning red carpet looks for celebrity clients and special events.",
+      type: "tutorial",
+    },
+    {
+      id: "mbhBNVvJUvI", // Dennis Karuri YouTube video 6
+      title: "Dennis Karuri | Makeup Transformation",
+      description: "Witness the power of makeup as I create dramatic transformations that showcase my artistic vision.",
+      type: "tutorial",
+    },
+  ]
+
+  const portfolioItems = [
+    {
+      id: 1,
+      title: "Bridal Makeup",
+      category: "makeup",
+      image: "/images/Karuri (2).jpg",
+      description: "Signature Bridal Looks",
+      featured: true,
+      videoId: "1Yb00blInuw",
+    },
+    {
+      id: 2,
+      title: "Celebrity Clients",
+      category: "makeup",
+      image: "/images/Karuri (27).jpg",
+      description: "Red Carpet & Event Makeup",
+      videoId: "cpPVer2HyWY",
+      embedVideo: true
+    },
+    {
+      id: 3,
+      title: "Fashion Week",
+      category: "fashion",
+      images: [
+        "/images/Karuri (55).jpg",
+        "/images/Karuri (74).jpg",
+        "/images/Karuri (71).jpg",
+        "/images/Karuri (9).jpg"
+      ],
+      image: "/images/Karuri (55).jpg",
+      description: "Runway Makeup Artistry",
+      rotating: true,
+    },
+    {
+      id: 4,
+      title: "Makeup Tutorials",
+      category: "content",
+      image: "/images/Karuri (1).jpg",
+      description: "Professional Makeup Techniques",
+      featured: true,
+      videoId: "S4im3wGxSP8",
+      embedVideo: true
+    },
+    {
+      id: 5,
+      title: "Brand Collaborations",
+      category: "collaboration",
+      image: "/images/Karuri (13).jpg",
+      description: "Beauty Brand Partnerships",
+      videoId: "Wj844oPp2ro",
+      embedVideo: true
+    },
+    {
+      id: 6,
+      title: "Editorial Beauty",
+      category: "fashion",
+      image: "/images/Karuri (14).jpg",
+      description: "Magazine Cover Looks",
+    },
+    {
+      id: 7,
+      title: "Makeup Masterclass",
+      category: "content",
+      image: "/images/Karuri (15).jpg",
+      description: "Advanced Makeup Education",
+      videoId: "mbhBNVvJUvI",
+    },
+    {
+      id: 8,
+      title: "Industry Insights",
+      category: "media",
+      image: "/images/Karuri (16).jpg",
+      description: "Beauty Industry Expertise",
+      videoId: "dr2_8S1NWAA",
+    },
+    {
+      id: 9,
+      title: "Creative Concepts",
+      category: "fashion",
+      image: "/images/Karuri (17).jpg",
+      description: "Artistic Makeup Designs",
+    },
+  ]
+
+  const filteredItems = filter === "all" ? portfolioItems : portfolioItems.filter((item) => item.category === filter)
+
+  return (
+    <main className="min-h-screen pt-24 pb-16">
+      <section className="px-4 md:px-6 py-12">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-4xl md:text-5xl font-bold font-playfair mb-4">My Portfolio</h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Showcasing my work as a makeup artist, beauty influencer, and creative visionary
+            </p>
+          </motion.div>
+
+          {/* Featured Videos Section */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-bold mb-8">Featured Appearances</h2>
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Featured Video */}
+              <motion.div
+                className="glass-card rounded-xl overflow-hidden lg:col-span-2"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="grid md:grid-cols-2 gap-0">
+                  <div className="relative h-72 md:h-auto">
+                    <YouTubeEmbed videoId={featuredVideos[0].id} title={featuredVideos[0].title} />
+                  </div>
+                  <div className="p-8 flex flex-col justify-center">
+                    <div className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 mb-4">
+                      Featured Video
+                    </div>
+                    <h2 className="text-2xl font-bold mb-3">{featuredVideos[0].title}</h2>
+                    <p className="text-muted-foreground mb-6">{featuredVideos[0].description}</p>
+                    <Button
+                      className="w-fit bg-gradient-to-r from-red-500 to-rose-400 hover:from-red-600 hover:to-rose-500 text-white border-none"
+                      onClick={() => window.open(`https://www.youtube.com/watch?v=${featuredVideos[0].id}`, "_blank")}
+                    >
+                      <Play className="mr-2 h-4 w-4" />
+                      Watch Video
+                    </Button>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Side Videos */}
+              <div className="lg:space-y-8">
+                {featuredVideos.slice(1, 3).map((video, index) => (
+                  <motion.div
+                    key={video.id}
+                    className="glass-card rounded-xl overflow-hidden h-full"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
+                  >
+                    <YouTubeEmbed videoId={video.id} title={video.title} />
+                    <div className="p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div
+                          className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            video.type === "tutorial" ? "bg-blue-100 text-blue-600" : 
+                            video.type === "interview" ? "bg-purple-100 text-purple-600" : 
+                            "bg-green-100 text-green-600"
+                          }`}
+                        >
+                          {video.type === "tutorial" ? "Tutorial" : 
+                           video.type === "interview" ? "Interview" : "Collaboration"}
+                        </div>
+                      </div>
+                      <h3 className="text-lg font-bold mb-1">{video.title}</h3>
+                      <p className="text-sm text-muted-foreground">{video.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Featured Image Section */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-bold mb-8">Featured Image</h2>
+            <motion.div
+              className="glass-card rounded-xl overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="grid md:grid-cols-2 gap-0">
+                <div className="relative h-64 md:h-auto">
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent z-10" />
+                  <ImageWithBlur
+                    src="/images/Karuri (55).jpg"
+                    alt="Dennis Karuri"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-8 flex flex-col justify-center">
+                  <div className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-pink-100 text-pink-800 mb-4">
+                    Featured Artistry
+                  </div>
+                  <h2 className="text-2xl font-bold mb-3">Makeup Masterpiece</h2>
+                  <p className="text-muted-foreground mb-6">
+                    A showcase of my signature makeup artistry, demonstrating my ability to create stunning beauty looks that transform and enhance my clients' natural features.
+                  </p>
+                  <Button className="w-fit bg-gradient-to-r from-red-500 to-rose-400 hover:from-red-600 hover:to-rose-500 text-white border-none">
+                    View Gallery
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Filter Buttons */}
+          <motion.div
+            className="flex flex-wrap justify-center gap-4 mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <Button
+              variant={filter === "all" ? "default" : "outline"}
+              onClick={() => setFilter("all")}
+              className={filter === "all" ? "bg-gradient-to-r from-red-500 to-rose-400" : ""}
+            >
+              All Work
+            </Button>
+            <Button
+              variant={filter === "makeup" ? "default" : "outline"}
+              onClick={() => setFilter("makeup")}
+              className={filter === "makeup" ? "bg-gradient-to-r from-red-500 to-rose-400" : ""}
+            >
+              <Film className="mr-2 h-4 w-4" />
+              Makeup
+            </Button>
+            <Button
+              variant={filter === "fashion" ? "default" : "outline"}
+              onClick={() => setFilter("fashion")}
+              className={filter === "fashion" ? "bg-gradient-to-r from-red-500 to-rose-400" : ""}
+            >
+              <Camera className="mr-2 h-4 w-4" />
+              Fashion
+            </Button>
+            <Button
+              variant={filter === "content" ? "default" : "outline"}
+              onClick={() => setFilter("content")}
+              className={filter === "content" ? "bg-gradient-to-r from-red-500 to-rose-400" : ""}
+            >
+              <Mic className="mr-2 h-4 w-4" />
+              Content
+            </Button>
+            <Button
+              variant={filter === "collaboration" ? "default" : "outline"}
+              onClick={() => setFilter("collaboration")}
+              className={filter === "collaboration" ? "bg-gradient-to-r from-red-500 to-rose-400" : ""}
+            >
+              <Mic className="mr-2 h-4 w-4" />
+              Collaborations
+            </Button>
+          </motion.div>
+
+          {/* Portfolio Grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                className="glass-card rounded-xl overflow-hidden group hover:shadow-xl transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+              >
+                <div className="relative h-64 overflow-hidden">
+                  {item.embedVideo && item.videoId ? (
+                    <YouTubeEmbed videoId={item.videoId} title={item.title} />
+                  ) : item.rotating && item.images ? (
+                    <RotatingImage 
+                      images={item.images} 
+                      alt={item.title} 
+                      interval={4000}
+                      className="transition-transform duration-500 group-hover:scale-110"
+                    />
+                  ) : (
+                    <ImageWithBlur
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  )}
+                  {item.videoId && !item.embedVideo && (
+                    <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="text-white border-white hover:bg-white/20"
+                        onClick={() => window.open(`https://www.youtube.com/watch?v=${item.videoId}`, "_blank")}
+                      >
+                        <Play className="mr-2 h-4 w-4" />
+                        Watch Video
+                      </Button>
+                    </div>
+                  )}
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground">{item.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}
