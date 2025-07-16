@@ -135,7 +135,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${montserrat.variable}`} suppressHydrationWarning>
       <body className="font-montserrat bg-gradient-to-b from-[#FFF5F5] to-[#FFF8F8] min-h-screen" suppressHydrationWarning>
         {/* Wrap client components in ClientOnly to prevent hydration mismatches */}
-        <ClientOnly skipHydration={true} fallback={<div className="h-16"></div>}>
+        <ClientOnly fallback={<div className="h-16"></div>}>
           <NavMenu />
         </ClientOnly>
         
@@ -143,7 +143,7 @@ export default function RootLayout({
           {children}
         </main>
         
-        <ClientOnly skipHydration={true}>
+        <ClientOnly>
           <Footer />
           <ToasterProvider />
         </ClientOnly>

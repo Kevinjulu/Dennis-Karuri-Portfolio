@@ -67,7 +67,7 @@ export default function ClientHeroLoader() {
     }, 5000)
     
     return () => clearInterval(interval)
-  }, [])
+  }, [imageErrors])
   
   // Show a placeholder during SSR and initial client-side load
   if (typeof window === 'undefined' || !isLoaded) {

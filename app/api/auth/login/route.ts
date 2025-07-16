@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/models';
 import User from '@/lib/models/user';
-import { sign } from 'jsonwebtoken';
+import * as jose from 'jose';
 import { cookies } from 'next/headers';
 
 export async function POST(req: NextRequest) {
@@ -34,17 +34,21 @@ export async function POST(req: NextRequest) {
     user.lastLogin = new Date();
     await user.save();
     
-    // Create JWT token
-    const token = sign(
-      { 
-        userId: user._id,
-        email: user.email,
-        role: user.role,
-        name: user.name
-      },
-      process.env.JWT_SECRET || 'fallback-secret-key-change-in-production',
-      { expiresIn: '7d' }
+    // Create secret key
+    const secret = new TextEncoder().encode(
+      process.env.JWT_SECRET || 'fallback-secret-key-change-in-production'
     );
+    
+    // Create JWT token
+    const token = await new jose.SignJWT({ 
+      userId: user._id,
+      email: user.email,
+      role: user.role,
+      name: user.name
+    })
+      .setProtectedHeader({ alg: 'HS256' })
+      .setExpirationTime('7d')
+      .sign(secret);
     
     // Set cookie
     cookies().set({

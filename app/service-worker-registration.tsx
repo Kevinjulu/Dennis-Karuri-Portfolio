@@ -72,7 +72,7 @@ export default function ServiceWorkerRegistration() {
         toast({
           title: "You're Offline",
           description: "Don't worry, you can still browse previously visited pages.",
-          variant: "warning",
+          variant: "default",
         })
       })
     }

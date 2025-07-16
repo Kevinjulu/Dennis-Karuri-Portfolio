@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 import { cookies } from 'next/headers';
-import { verify } from 'jsonwebtoken';
+import * as jose from 'jose';
 
 export interface AuthUser {
   userId: string;
@@ -19,13 +19,30 @@ export async function getAuthUser(req?: NextRequest): Promise<AuthUser | null> {
       return null;
     }
     
-    // Verify the token
-    const decoded = verify(
-      token, 
+    // Create a secret key from the JWT secret
+    const secret = new TextEncoder().encode(
       process.env.JWT_SECRET || 'fallback-secret-key-change-in-production'
-    ) as AuthUser;
+    );
     
-    return decoded;
+    // Verify the token
+    const { payload } = await jose.jwtVerify(token, secret);
+    
+    // Validate the payload has the required fields
+    if (
+      typeof payload.userId !== 'string' ||
+      typeof payload.email !== 'string' ||
+      typeof payload.name !== 'string' ||
+      typeof payload.role !== 'string'
+    ) {
+      return null;
+    }
+
+    return {
+      userId: payload.userId,
+      email: payload.email,
+      name: payload.name,
+      role: payload.role
+    };
   } catch (error) {
     console.error('Auth verification error:', error);
     return null;

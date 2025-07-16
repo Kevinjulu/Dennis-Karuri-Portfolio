@@ -5,13 +5,13 @@ import { Instagram } from "lucide-react"
 import { motion } from "framer-motion"
 import { OptimizedImage } from "@/components/optimized-image"
 import { preloadImages } from "@/lib/utils"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 
 export function InfluencingSection() {
   const brands = ["MAC Cosmetics", "Fenty Beauty", "Maybelline", "Local Beauty Brands"]
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({})
 
-  const posts = [
+  const posts = useMemo(() => [
     {
       id: 1,
       image: "/images/Other images/Karuri (30).jpg",
@@ -60,12 +60,14 @@ export function InfluencingSection() {
       alt: "Dennis teaching makeup class",
       category: "Masterclass",
     },
-  ]
+  ], [])
 
   // Preload images after component mounts
   useEffect(() => {
     preloadImages(posts.map(post => post.image))
       .catch(err => console.error('Error preloading influencer images:', err))
+    // posts is memoized with no dependencies, so it's safe to exclude from deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
