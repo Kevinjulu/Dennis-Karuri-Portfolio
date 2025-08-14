@@ -3,8 +3,11 @@
 import Link from "next/link"
 import { Instagram, Facebook, Heart, ArrowUp } from "lucide-react"
 import { motion } from "framer-motion"
+import { useSafeYear } from "@/hooks/use-safe-date"
 
 export function Footer() {
+  const currentYear = useSafeYear()
+  
   const scrollToTop = () => {
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -150,7 +153,7 @@ export function Footer() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Dennis Karuri. All rights reserved.</p>
+            <p>&copy; {currentYear || new Date().getFullYear()} Dennis Karuri. All rights reserved.</p>
             <p className="flex items-center gap-1">
               Made with <Heart className="h-3 w-3 text-red-500 animate-pulse" /> by{" "}
               <Link

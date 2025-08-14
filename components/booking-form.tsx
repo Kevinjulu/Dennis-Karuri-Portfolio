@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { motion } from "framer-motion"
+import { useSafeDate } from "@/hooks/use-safe-date"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -31,9 +32,16 @@ export function BookingForm({ className }: BookingFormProps) {
     budget: "",
   })
 
+  // Get today's date safely for hydration
+  const todayDate = useSafeDate(() => {
+    const today = new Date()
+    today.setHours(0, 0, 0, 0) // Reset time to prevent hydration issues
+    return today
+  })
+
   // Disable dates before today
   const disabledDates = {
-    before: new Date(),
+    before: todayDate || new Date(),
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -158,8 +166,8 @@ export function BookingForm({ className }: BookingFormProps) {
                   onSelect={setDate} 
                   disabled={disabledDates}
                   initialFocus 
-                  fromDate={new Date()} 
-                  toDate={addDays(new Date(), 90)}
+                  fromDate={todayDate || new Date()} 
+                  toDate={todayDate ? addDays(todayDate, 90) : addDays(new Date(), 90)}
                   className="rounded-md border-0"
                 />
                 <div className="p-3 border-t border-gray-100 bg-gray-50 text-xs text-gray-500 rounded-b-md">
