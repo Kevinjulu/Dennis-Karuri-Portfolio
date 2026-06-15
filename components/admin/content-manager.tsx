@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { SafeLocaleDateDisplay } from "@/components/safe-date-display"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -18,7 +19,6 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { apiClient } from "@/lib/api-client"
-import { format } from "date-fns"
 import { toast } from "sonner"
 import Image from "next/image"
 
@@ -286,7 +286,10 @@ export function ContentManager() {
                     <p className="text-sm text-gray-500 line-clamp-2 mb-3">{item.description}</p>
                     <div className="flex items-center text-xs text-gray-500">
                       <Calendar className="h-3 w-3 mr-1" />
-                      {format(new Date(item.date), 'MMM d, yyyy')}
+                      <SafeLocaleDateDisplay
+                        date={item.date}
+                        fallback="--"
+                      />
                       {item.platform && (
                         <span className="ml-3 flex items-center">
                           <FileText className="h-3 w-3 mr-1" />

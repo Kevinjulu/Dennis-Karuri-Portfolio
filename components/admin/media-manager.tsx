@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
+import { SafeLocaleDateDisplay } from "@/components/safe-date-display"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -473,7 +474,11 @@ export function MediaManager() {
                             <div className="text-sm">{formatFileSize(file.fileSize)}</div>
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap">
-                            <div className="text-sm">{new Date(file.createdAt).toLocaleDateString()}</div>
+                            <SafeLocaleDateDisplay
+                              date={file.createdAt}
+                              className="text-sm"
+                              fallback="--"
+                            />
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap text-right">
                             <DropdownMenu>
